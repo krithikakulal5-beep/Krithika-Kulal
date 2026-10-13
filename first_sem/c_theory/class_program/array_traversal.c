@@ -1,11 +1,4 @@
 #include<stdio.h>
-
-int main(){
-    int arraysize=read_array_size();   //calling method &stores returned values
-    int isvalid=validate_array_size(arraysize);     //passing 'arraysize';int array_size=arraysize
-
-}
-//read array size from keyboard
 int read_array_size(){
     int size;
     printf("enter the array size[>4]:");
@@ -17,4 +10,24 @@ int validate_array_size(int array_size){
         return 1;    
     }
     return 0;
+}
+int main(){
+    int isvalid=1;
+    int arraysize=0;
+    //calling method &stores returned values
+    //passing 'arraysize';int array_size=arraysize
+    while(isvalid==1){
+        arraysize=read_array_size();
+        int validated=validate_array_size(arraysize);   
+        if(validated==1){
+            break;
+        }
+        else{
+            printf("array size is invalid.plz retry\n");
+        }
+    }
+    int myarray[arraysize];
+    for(int i;i<arraysize;i++){
+        printf()
+    }
 }
