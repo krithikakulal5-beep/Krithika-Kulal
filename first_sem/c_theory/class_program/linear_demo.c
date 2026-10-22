@@ -4,13 +4,13 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-int linear_search(int [],int,int);   //function prototype for linear_search()
+int linear_search(int [],int,int,int*);   //function prototype for linear_search()
 bool validate_size(int);                //'validate_sie() funtion prototype'
 int read_size();                        //read_size() function prototype
 
 int main(){
     bool isValid=true;
-    int size,key;
+    int size,key,comparisons=0;
     // loop to iterate untill valid array size is received
     do{
         size=read_size();
@@ -21,7 +21,7 @@ int main(){
 
     }while (isValid);
     // Array initialization
-    int numbers[size];
+    int numbers[size]; 
     for (int i = 0; i < size; i++)
     {
         printf("Enter %d array element:", i+1);
@@ -31,12 +31,13 @@ int main(){
     printf("Enter the search element");
     scanf("%d",&key);
     //calling linear_search()
-    int position=linear_search(numbers,key,size);
+    int position=linear_search(numbers,key,size,&comparisons);
     if(position==-1){
         printf("%d is not found",key);
     }else{
-        printf("%d Found at %d",key,position);
+        printf("%d Found at %d ",key,position);
     }
+    printf("number of comparisons made:%d\n",comparisons);
 
 }
 bool validate_size(int arraySize){
@@ -56,8 +57,9 @@ int read_size(){
 //method to implement linear search
 //trverse each array position to check whether it has 'searchkey' or not
 //returns array index of matched array element if found; -1 otherwise
-int linear_search(int myarray[],int searchkey,int arraysize){
+int linear_search(int myarray[],int searchkey,int arraysize,int *comparisons){
     for (int i=0;i<arraysize;i++){
+        (*comparisons)++;
         if(myarray[i]==searchkey)
             return i;     
     }
